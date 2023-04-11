@@ -40,7 +40,7 @@ public class VerifyTokenService {
 			Long exp = System.currentTimeMillis() + Long.parseLong(verifyTokenExpiry) * 1000;
 
 			Map<String, Object> cl = new HashMap<>();
-			cl.put(Claims.SUBJECT, verifyDevice(deviceId));
+			cl.put(Claims.SUBJECT, deviceId);
 			cl.put("label", verifyCustomer());
 			cl.put(Claims.EXPIRATION, exp);
 
@@ -53,10 +53,6 @@ public class VerifyTokenService {
 	}
 
 	// ---
-
-	private String verifyDevice(String deviceId) {
-		return deviceId;
-	}
 
 	private String verifyCustomer() {
 		return "Customer " + UUID.randomUUID().toString();
