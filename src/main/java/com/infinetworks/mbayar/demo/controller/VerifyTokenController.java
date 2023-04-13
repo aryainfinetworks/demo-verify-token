@@ -19,9 +19,10 @@ public class VerifyTokenController {
 	@PostMapping("/api/devices/verify")
 	public ResponseEntity<?> getVerifyToken(@RequestBody VerificationRequest request) {
 
+		// process request
 		String verifyToken = this.verifyTokenService.generateVerifyToken(request.getDeviceId());
 
-		// return
+		// return response
 		VerificationToken retVal = new VerificationToken();
 		retVal.setVerifyToken(verifyToken);
 

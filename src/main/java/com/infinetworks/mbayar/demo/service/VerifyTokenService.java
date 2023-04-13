@@ -35,10 +35,13 @@ public class VerifyTokenService {
 
 	public String generateVerifyToken(String deviceId) {
 		try {
+			// (1). read private key for signing
 			PrivateKey priv = this.readPrivateKey();
 
+			// (2). calculate token expiry
 			Long exp = System.currentTimeMillis() + Long.parseLong(verifyTokenExpiry) * 1000;
 
+			// (3). generate signed JWT for verify token, and return
 			Map<String, Object> cl = new HashMap<>();
 			cl.put(Claims.SUBJECT, deviceId);
 			cl.put("label", verifyCustomer());
@@ -54,6 +57,13 @@ public class VerifyTokenService {
 
 	// ---
 
+	/**
+	 * This verifies customer.
+	 * 
+	 * For this example, it generates random UUID.
+	 * 
+	 * @return label
+	 */
 	private String verifyCustomer() {
 		return "Customer " + UUID.randomUUID().toString();
 	}

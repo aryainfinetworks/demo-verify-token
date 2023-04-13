@@ -6,7 +6,7 @@ A simple implementation for API Verify Token for Backend Application, using Spri
 
 ## How To
 
-Pre-requisite: JDK 11 and Maven 3 are installed
+Pre-requisite: JDK 11 and Maven are installed
 
 ```sh
 mvn clean package
@@ -19,4 +19,3 @@ To test:
 ```sh
 curl -X POST http://localhost:9991/api/devices/verify -H 'Content-Type: application/json' -d '{"device_id":"7cbd0a85c1b95740"}'
 ```
-
