@@ -30,7 +30,7 @@ public class VerifyTokenService {
 	@Value("${app.jwt.expiry}")
 	private String verifyTokenExpiry;
 
-	@Value("classpath:private.txt")
+	@Value("${pk.resource}")
 	private Resource privateKeyResource;
 
 	public String generateVerifyToken(String deviceId) {
@@ -69,6 +69,7 @@ public class VerifyTokenService {
 	}
 
 	private PrivateKey readPrivateKey() throws Exception {
+		logger.info("reading pk: {}", this.privateKeyResource.getFilename());
 		InputStream is = this.privateKeyResource.getInputStream();
 		try (BufferedReader reader = new BufferedReader(new InputStreamReader(is))) {
 			String key = reader.lines().collect(Collectors.joining("\n"));
